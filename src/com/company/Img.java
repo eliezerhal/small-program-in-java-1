@@ -1,9 +1,7 @@
 package com.company;
 
-import java.io.IOException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 
@@ -17,14 +15,10 @@ public class Img implements command {
             Elements imageElements = doc.select("img");
             if (imageElements == null)
                 return false;
-        }
-        catch (IOException e){
-            System.out.println(e.getMessage());
-        }
-        catch (Exception e){
+        } catch (Exception e){
             System.out.println(e.getMessage());
         }
         return true;
     }
-    private String[] myStr;
+    private final String[] myStr;
 }

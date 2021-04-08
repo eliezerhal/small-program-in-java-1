@@ -10,7 +10,9 @@ public class Language implements command {
         myStr = str;
     }
     public boolean checkingContentType() {
-        return isEnglish();
+        if(myStr[2].equals("english"))
+            return isEnglish();
+        return false;
     }
 
     public boolean isEnglish() {
@@ -32,12 +34,10 @@ public class Language implements command {
             for (int i = 0; i < 26; i++) {
                 frqArr[i] = (double) lettersArr[i]/counter;
             }
-            for (int i = 0; i < 26; i++) {
-                double diff = FrqArr[i] - frqArr[i];
-                if(diff * diff > 0.04)
-                    return false;
-            }
-            return true;
+            double var = 0;
+            for (int i = 0; i < 26; i++)
+                var += Math.pow(FrqArr[i] - frqArr[i], 2);
+            return (var < 0.04);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

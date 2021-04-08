@@ -9,7 +9,8 @@ public class Type implements command {
         catch (Exception e) {
             throw new GeneralException(e.getMessage());
         }
-    };
+    }
+
     public boolean checkingContentType() {
         try {
             String cont = myUrl.getType();
@@ -21,6 +22,6 @@ public class Type implements command {
         }
         return false;
     }
-    private String[] myStr;
-    private Url myUrl;
+    private final String[] myStr;
+    private final Url myUrl;
 }
