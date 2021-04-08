@@ -1,8 +1,18 @@
 package com.company;
-
+/**
+ * This is a class for the Type command
+ */
 public class Type implements command {
+    /**
+     * This is the class builder function
+     * @param str
+     * @throws GeneralException
+     */
     public Type(String[] str) throws GeneralException {
         myStr = str;
+        /**
+         * This is a test of whether the URL argument is missing, and if so, an exception is thrown
+         */
         try {
             myUrl = new Url(str[1]);
         }
@@ -11,7 +21,12 @@ public class Type implements command {
         }
     }
 
+    /**
+     *
+     * @return Boolean value
+     */
     public boolean checkingContentType() {
+
         try {
             String cont = myUrl.getType();
             if(cont.contains(myStr[2]))
