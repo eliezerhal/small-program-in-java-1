@@ -12,8 +12,14 @@ public class Language implements command {
         counter = 0;
     }
     public boolean checkingContentType() {
-        if(myStr[2].equals("english"))
-            return isEnglish();
+        try {
+            if(myStr[2].equals("english"))
+                return isEnglish();
+        }
+        catch (Exception e) {
+            if(e.getMessage().equals("Index 2 out of bounds for length 1"))
+                return false;
+        }
         return false;
     }
 
@@ -54,7 +60,7 @@ public class Language implements command {
             }
         }
         catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
     private final String[] myStr;

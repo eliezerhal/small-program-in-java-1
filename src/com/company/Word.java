@@ -5,7 +5,6 @@ import org.jsoup.nodes.Document;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 
 public class Word implements command {
     public Word(String[] str) {
@@ -30,21 +29,16 @@ public class Word implements command {
         }
         return true;
     }
-    public String[] readFile() throws IOException {
+    public String[] readFile() {
         StringBuilder str = new StringBuilder();
         String[] words = null;
-        BufferedReader reader = new BufferedReader(new FileReader(myStr[2]));
-        String line;
-        try {
+        try (BufferedReader reader = new BufferedReader(new FileReader(myStr[2]))) {
+            String line;
             while ((line = reader.readLine()) != null)
                 str.append(line).append(" ");
             words = str.toString().split(" ");
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.err.println(e.getMessage());
-        }
-        finally {
-            reader.close();
         }
         return words;
     }
