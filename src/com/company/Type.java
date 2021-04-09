@@ -33,7 +33,7 @@ public class Type implements command {
                 return true;
         }
         catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return false;
     }

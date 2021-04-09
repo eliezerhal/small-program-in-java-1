@@ -24,7 +24,6 @@ public class Word implements command {
                 if (!str.contains(words[i]))
                     return false;
             }
-            return true;
         }
         catch (Exception e) {
             System.err.println(e.getMessage());
