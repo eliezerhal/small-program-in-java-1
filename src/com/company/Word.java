@@ -43,6 +43,9 @@ public class Word implements command {
         catch (Exception e) {
             System.err.println(e.getMessage());
         }
+        finally {
+            reader.close();
+        }
         return words;
     }
     private final String[] myStr;

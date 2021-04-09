@@ -33,7 +33,7 @@ public class Language implements command {
             System.out.println(var);
             return (var < 0.04);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return true;
     }
