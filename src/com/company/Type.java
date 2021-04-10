@@ -17,6 +17,7 @@ public class Type implements command {
             myUrl = new Url(str[1]);
         }
         catch (Exception e) {
+            //System.out.println(e.getClass());
             throw new GeneralException(e.getMessage());
         }
     }

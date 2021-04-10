@@ -36,8 +36,7 @@ public class Language implements command {
             double var = 0;
             for (int i = 0; i < 26; i++)
                 var += Math.pow(FrqArr[i] - frqArr[i], 2);
-            System.out.println(var);
-            return (var < 0.04);
+            return (var < 0.004);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
