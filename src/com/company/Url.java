@@ -8,11 +8,19 @@ public class Url {
         webAddress = address;
     }
 
-    public String getType() throws Exception{
-        URL webAdr = new URL(webAddress);
-        URLConnection connection = webAdr.openConnection();
+    public String getType() throws Exception {
+        try {
+            webAdr = new URL(webAddress);
+        }
+        catch (MalformedURLException e) {
+            System.err.println("bad URL");
+            throw new GeneralException("");
+        }
+        connection = webAdr.openConnection();
         return connection.getContentType();
     }
 
     private final String webAddress;
+    private URLConnection connection;
+    private URL webAdr;
 }

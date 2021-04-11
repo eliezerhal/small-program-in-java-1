@@ -13,14 +13,7 @@ public class Main {
             }
             catch (ExitException e) {
                 break;
-            }
-            catch (GeneralException e) {
-                if(e.getMessage().equals("Index 1 out of bounds for length 1"))
-                    System.out.println("false");
-                else
-                    System.err.println(e.getMessage());
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 System.err.println(e.getMessage());
             }
         }

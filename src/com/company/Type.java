@@ -13,6 +13,8 @@ public class Type implements command {
         /**
          * This is a test of whether the URL argument is missing, and if so, an exception is thrown
          */
+        if(myStr.length < 2)
+            throw new GeneralException("bad Url");
         try {
             myUrl = new Url(str[1]);
         }
@@ -28,16 +30,20 @@ public class Type implements command {
      */
     public boolean checkingContentType() {
 
+        if(myStr.length < 3)
+            return false;
         try {
-            String cont = myUrl.getType();
-            if(cont.contains(myStr[2]))
-                return true;
+            cont = myUrl.getType();
+        }
+        catch (GeneralException e) {
+            System.err.println("bad URL");
         }
         catch (Exception e) {
             System.err.println(e.getMessage());
         }
-        return false;
+        return cont.contains(myStr[2]);
     }
     private final String[] myStr;
     private final Url myUrl;
+    private String cont;
 }

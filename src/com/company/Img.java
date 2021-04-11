@@ -16,7 +16,7 @@ public class Img implements command {
             if (imageElements == null)
                 return false;
         } catch (Exception e){
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return true;
     }

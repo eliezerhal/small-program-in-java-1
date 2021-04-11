@@ -12,14 +12,10 @@ public class Language implements command {
         counter = 0;
     }
     public boolean checkingContentType() {
-        try {
-            if(myStr[2].equals("english"))
-                return isEnglish();
-        }
-        catch (Exception e) {
-            if(e.getMessage().equals("Index 2 out of bounds for length 1"))
-                return false;
-        }
+        if(myStr.length < 3)
+            return false;
+        if(myStr[2].equals("english"))
+            return isEnglish();
         return false;
     }
 
