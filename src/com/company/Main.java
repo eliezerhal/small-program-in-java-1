@@ -4,7 +4,6 @@ public class Main {
 
     public static void main(String[] args) {
         while (true) {
-            //System.out.println("Enter command:");
             try {
                 In input = new In();
                 input.getIn();

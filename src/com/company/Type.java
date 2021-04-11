@@ -8,12 +8,12 @@ import java.io.IOException;
 public class Type implements command {
     /**
      * This is the class constructor function
-     * @param str
+     * @param str is array of string that contain the command's part
      * @throws GeneralException if the command is invalid
      */
     public Type(String[] str) throws GeneralException {
         myStr = str;
-        if(myStr.length < 2)
+        if(myStr.length < 2 || myStr.length > 3)
             throw new GeneralException("invalid command");
         try {
             myUrl = new Url(str[1]);
@@ -24,10 +24,11 @@ public class Type implements command {
     }
 
     /**
-     *
-     * @return true if the field of the http answer starts with a given string
+     * This function checking if the words of the file appear in the contents of the url
+     * @return true if the field of the words of the file appear in the contents of the url
+     * @throws GeneralException if If there are URL problems or problems opening / reading / closing the file
      */
-    public boolean checkingContentType() throws  GeneralException{
+    public boolean checkingContentType() throws GeneralException {
 
         if(myStr.length < 3)
             return false;
@@ -45,6 +46,7 @@ public class Type implements command {
         }
         return cont.contains(myStr[2]);
     }
+
     private final String[] myStr;
     private final Url myUrl;
     private String cont;

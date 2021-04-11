@@ -7,19 +7,25 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 /**
- * this class that working on a "word" command
+ * This class that working on a "word" command
  */
 public class Word implements command {
+    /**
+     * This is the class constructor function
+     * @param str is array of string that contain the command's part
+     */
     public Word(String[] str) {
         myStr = str;
     }
 
     /**
-     *
-     * @return true if the content type contain the argument that i pass in th ecommand
+     * This function checking if the content type starts with a given string
+     * @return true if the content type starts with a given string
      */
     public boolean checkingContentType() {
         try {
+            if(myStr.length < 2 || myStr.length > 3)
+                throw new GeneralException("invalid command");
             String[] words = readFile();
             if(words.length == 0)
                 return true;
@@ -37,6 +43,11 @@ public class Word implements command {
         }
         return true;
     }
+
+    /**
+     * This function reads from the file
+     * @return array of strings of the words in the file
+     */
     public String[] readFile() {
         StringBuilder str = new StringBuilder();
         String[] words = null;

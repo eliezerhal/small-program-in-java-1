@@ -4,8 +4,8 @@ package com.company;
  */
 public class GeneralException extends Exception {
     /**
-     * This is the class builder function
-     * @param msg
+     * This is the class constructor function
+     * @param msg is the message of exception
      */
     public GeneralException(String msg) {
         super(msg);

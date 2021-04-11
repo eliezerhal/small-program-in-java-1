@@ -5,6 +5,9 @@ import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 
+/**
+ * This is a class for the Language command
+ */
 public class Language implements command {
     public Language(String[] str) {
         myStr = str;
