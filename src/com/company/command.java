@@ -1,5 +1,5 @@
 package com.company;
 
 public interface command {
-    boolean checkingContentType();
+    boolean checkingContentType() throws GeneralException;
 }

@@ -6,10 +6,18 @@ import org.jsoup.nodes.Document;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
+/**
+ * this class that working on a "word" command
+ */
 public class Word implements command {
     public Word(String[] str) {
         myStr = str;
     }
+
+    /**
+     *
+     * @return true if the content type contain the argument that i pass in th ecommand
+     */
     public boolean checkingContentType() {
         try {
             String[] words = readFile();

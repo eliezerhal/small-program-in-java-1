@@ -1,34 +1,33 @@
 package com.company;
+
+import java.io.IOException;
+
 /**
  * This is a class for the Type command
  */
 public class Type implements command {
     /**
-     * This is the class builder function
+     * This is the class constructor function
      * @param str
-     * @throws GeneralException
+     * @throws GeneralException if the command is invalid
      */
     public Type(String[] str) throws GeneralException {
         myStr = str;
-        /**
-         * This is a test of whether the URL argument is missing, and if so, an exception is thrown
-         */
         if(myStr.length < 2)
-            throw new GeneralException("bad Url");
+            throw new GeneralException("invalid command");
         try {
             myUrl = new Url(str[1]);
         }
         catch (Exception e) {
-            //System.out.println(e.getClass());
             throw new GeneralException(e.getMessage());
         }
     }
 
     /**
      *
-     * @return Boolean value
+     * @return true if the field of the http answer starts with a given string
      */
-    public boolean checkingContentType() {
+    public boolean checkingContentType() throws  GeneralException{
 
         if(myStr.length < 3)
             return false;
@@ -36,7 +35,10 @@ public class Type implements command {
             cont = myUrl.getType();
         }
         catch (GeneralException e) {
-            System.err.println("bad URL");
+            throw new GeneralException("bad url");
+        }
+        catch (IOException e) {
+            throw new GeneralException("error");
         }
         catch (Exception e) {
             System.err.println(e.getMessage());

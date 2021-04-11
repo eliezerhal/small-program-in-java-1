@@ -9,18 +9,16 @@ public class Url {
     }
 
     public String getType() throws Exception {
+        URL webAdr;
         try {
             webAdr = new URL(webAddress);
         }
         catch (MalformedURLException e) {
-            System.err.println("bad URL");
-            throw new GeneralException("");
+            throw new GeneralException("bad url");
         }
-        connection = webAdr.openConnection();
+        URLConnection connection = webAdr.openConnection();
         return connection.getContentType();
     }
 
     private final String webAddress;
-    private URLConnection connection;
-    private URL webAdr;
 }

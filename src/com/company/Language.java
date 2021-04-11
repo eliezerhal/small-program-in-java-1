@@ -11,11 +11,18 @@ public class Language implements command {
         lettersArr = new int[26];
         counter = 0;
     }
-    public boolean checkingContentType() {
-        if(myStr.length < 3)
+    public boolean checkingContentType() throws GeneralException {
+        if(myStr.length < 2 || myStr.length > 3)
+            throw new GeneralException("invalid command");
+        if(myStr.length != 3)
             return false;
-        if(myStr[2].equals("english"))
-            return isEnglish();
+        try {
+            if (myStr[2].equals("english"))
+                return isEnglish();
+        }
+        catch (Exception e) {
+            throw new GeneralException(e.getMessage());
+        }
         return false;
     }
 
@@ -44,7 +51,7 @@ public class Language implements command {
         str = str.toLowerCase();
         return str;
     }
-    public void counteringLetters() {
+    public void counteringLetters() throws Exception {
         try {
             String str = readText();
             for (int i = 0; i < str.length(); i++) {
@@ -55,7 +62,10 @@ public class Language implements command {
             }
         }
         catch (IOException e) {
-            System.err.println(e.getMessage());
+            throw new GeneralException("error");
+        }
+        catch (Exception e) {
+            throw new GeneralException(e.getMessage());
         }
     }
     private final String[] myStr;
