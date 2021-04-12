@@ -21,7 +21,7 @@ public class Img implements command {
     /**
      *
      * @return
-     * @throws GeneralException
+     * @throws GeneralException if there are URL problems or problems opening / reading / closing the file
      */
     public boolean checkingContentType() throws GeneralException {
         if(myStr.length != 2)

@@ -7,7 +7,7 @@ import java.net.URLConnection;
  * This is a class for URL options
  */
 public class Url {
-    /***
+    /**
      * This is the class constructor function
      * @param address is the web address in the commands
      */
@@ -16,9 +16,9 @@ public class Url {
     }
 
     /**
-     *
-     * @return
-     * @throws Exception
+     * This function returns ContentType of the URL
+     * @return ContentType of the URL
+     * @throws Exception if there are URL problems
      */
     public String getType() throws Exception {
         URL webAdr;

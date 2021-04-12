@@ -14,6 +14,12 @@ public class Language implements command {
         lettersArr = new int[26];
         counter = 0;
     }
+
+    /**
+     * this function checking if this is the desired language
+     * @return true if this is the desired language
+     * @throws GeneralException if the command is invalid
+     */
     public boolean checkingContentType() throws GeneralException {
         if(myStr.length < 2 || myStr.length > 3)
             throw new GeneralException("invalid command");
@@ -29,6 +35,10 @@ public class Language implements command {
         return false;
     }
 
+    /**
+     * this function checking if this is the desired language
+     * @return true if the language is English
+     */
     public boolean isEnglish() {
         try {
             counteringLetters();
@@ -48,12 +58,23 @@ public class Language implements command {
         }
         return true;
     }
+
+    /**
+     *
+     * @return string of file text
+     * @throws IOException if there are input / output exceptions
+     */
     public String readText() throws IOException {
         Document doc = Jsoup.connect(myStr[1]).get();
         String str = doc.text();
         str = str.toLowerCase();
         return str;
     }
+
+    /**
+     * This function counts the frequency of the letters in the language
+     * @throws Exception if there are input / output exceptions or deviations in the program activity
+     */
     public void counteringLetters() throws Exception {
         try {
             String str = readText();
