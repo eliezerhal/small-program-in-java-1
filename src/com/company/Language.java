@@ -4,6 +4,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 /**
  * This is a class for the Language command
@@ -29,7 +30,9 @@ public class Language implements command {
             if (myStr[2].equals("english"))
                 return isEnglish();
         }
-        catch (Exception e) {
+        catch (IllegalArgumentException e) {
+            throw new GeneralException("bad url");
+        } catch (Exception e) {
             throw new GeneralException(e.getMessage());
         }
         return false;
@@ -38,8 +41,9 @@ public class Language implements command {
     /**
      * this function checking if this is the desired language
      * @return true if the language is English
+     * @throws GeneralException if there are URL problems or problems opening / reading / closing the file
      */
-    public boolean isEnglish() {
+    public boolean isEnglish() throws GeneralException {
         try {
             counteringLetters();
             double[] frqArr = new double[26];
@@ -54,19 +58,19 @@ public class Language implements command {
                 var += Math.pow(FrqArr[i] - frqArr[i], 2);
             return (var < 0.004);
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            throw new GeneralException(e.getMessage());
         }
-        return true;
     }
 
     /**
-     *
+     * This function reads text of the file in URL address
      * @return string of file text
      * @throws IOException if there are input / output exceptions
      */
     public String readText() throws IOException {
+        String str;
         Document doc = Jsoup.connect(myStr[1]).get();
-        String str = doc.text();
+        str = doc.text();
         str = str.toLowerCase();
         return str;
     }
@@ -84,6 +88,12 @@ public class Language implements command {
                     counter++;
                 }
             }
+        }
+        catch (IllegalArgumentException e) {
+            throw new GeneralException("bad url");
+        }
+        catch (MalformedURLException e) {
+            throw new GeneralException("bad url");
         }
         catch (IOException e) {
             throw new GeneralException("error");

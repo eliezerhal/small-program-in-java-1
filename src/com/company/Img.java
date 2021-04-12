@@ -5,6 +5,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 /**
  * This is a class for the Img command
@@ -31,6 +32,12 @@ public class Img implements command {
             Elements imageElements = doc.select("img");
             if (imageElements == null)
                 return false;
+        }
+        catch (IllegalArgumentException e) {
+            throw new GeneralException("bad url");
+        }
+        catch (MalformedURLException e) {
+            throw new GeneralException("bad url");
         }
         catch (IOException e) {
             throw new GeneralException("error");

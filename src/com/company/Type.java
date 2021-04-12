@@ -33,7 +33,7 @@ public class Type implements command {
         if(myStr.length < 3)
             return false;
         try {
-            cont = myUrl.getType();
+            type = myUrl.getType();
         }
         catch (GeneralException e) {
             throw new GeneralException("bad url");
@@ -44,10 +44,10 @@ public class Type implements command {
         catch (Exception e) {
             System.err.println(e.getMessage());
         }
-        return cont.contains(myStr[2]);
+        return type.contains(myStr[2]);
     }
 
     private final String[] myStr;
     private final Url myUrl;
-    private String cont;
+    private String type;
 }

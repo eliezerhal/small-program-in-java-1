@@ -5,6 +5,7 @@ import org.jsoup.nodes.Document;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 
 /**
  * This class that working on a "word" command
@@ -14,21 +15,32 @@ public class Word implements command {
      * This is the class constructor function
      * @param str is array of string that contain the command's part
      */
-    public Word(String[] str) {
+    public Word(String[] str) throws GeneralException{
         myStr = str;
+        if(myStr.length < 2 || myStr.length > 3)
+        throw new GeneralException("invalid command");
+        try{
+        myUrl = new Url(str[1]);
+        }
+        catch(Exception e){
+        throw new GeneralException(e.getMessage());
+        }
     }
 
     /**
      * This function checking if the content type starts with a given string
      * @return true if the content type starts with a given string
      */
-    public boolean checkingContentType() {
+    public boolean checkingContentType() throws GeneralException {
         try {
-            if(myStr.length < 2 || myStr.length > 3)
-                throw new GeneralException("invalid command");
+            /*if(myStr.length < 2 || myStr.length > 3)
+                throw new GeneralException("invalid command");*/
             String[] words = readFile();
             if(words.length == 0)
                 return true;
+            String type = myUrl.getType();
+            if(!type.equals("text"))
+                return false;
             Document doc = Jsoup.connect(myStr[1]).get();
             String str = doc.text();
             str = str.toLowerCase();
@@ -38,8 +50,15 @@ public class Word implements command {
                     return false;
             }
         }
+        catch (IllegalArgumentException e) {
+            throw new GeneralException("bad url");
+        }
+        catch (IOException e) {
+            throw new GeneralException("error");
+        }
         catch (Exception e) {
-            System.err.println(e.getMessage());
+            //System.err.println(e.getMessage());
+            throw new GeneralException(e.getMessage());
         }
         return true;
     }
@@ -48,18 +67,20 @@ public class Word implements command {
      * This function reads from the file
      * @return array of strings of the words in the file
      */
-    public String[] readFile() {
+    public String[] readFile() throws GeneralException {
         StringBuilder str = new StringBuilder();
-        String[] words = null;
+        String[] words;
         try (BufferedReader reader = new BufferedReader(new FileReader(myStr[2]))) {
             String line;
             while ((line = reader.readLine()) != null)
                 str.append(line).append(" ");
             words = str.toString().split(" ");
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            //System.err.println(e.getMessage());
+            throw new GeneralException("error");
         }
         return words;
     }
     private final String[] myStr;
+    private final Url myUrl;
 }
