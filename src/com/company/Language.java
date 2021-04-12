@@ -98,7 +98,17 @@ public class Language implements command {
             throw new GeneralException(e.getMessage());
         }
     }
+
+    /**
+     * A string of command line strings
+     */
     private final String[] myStr;
+    /**
+     * An array containing the amount of letters in a file
+     */
     private final int[] lettersArr;
+    /**
+     * A counter of letters in a file
+     */
     private int counter;
 }
