@@ -20,8 +20,8 @@ public class Img implements command {
     }
 
     /**
-     *
-     * @return
+     * This function checks if there are images on the page
+     * @return true if there are images on the page
      * @throws GeneralException if there are URL problems or problems opening / reading / closing the file
      */
     public boolean checkingContentType() throws GeneralException {
@@ -33,13 +33,9 @@ public class Img implements command {
             if (imageElements == null)
                 return false;
         }
-        catch (IllegalArgumentException e) {
+        catch (IllegalArgumentException | MalformedURLException e) {
             throw new GeneralException("bad url");
-        }
-        catch (MalformedURLException e) {
-            throw new GeneralException("bad url");
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new GeneralException("error");
         }
         catch (Exception e) {

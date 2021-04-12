@@ -18,23 +18,21 @@ public class Word implements command {
     public Word(String[] str) throws GeneralException{
         myStr = str;
         if(myStr.length < 2 || myStr.length > 3)
-        throw new GeneralException("invalid command");
-        try{
-        myUrl = new Url(str[1]);
+            throw new GeneralException("invalid command");
+        try {
+            myUrl = new Url(str[1]);
         }
         catch(Exception e){
-        throw new GeneralException(e.getMessage());
+            throw new GeneralException(e.getMessage());
         }
     }
 
     /**
-     * This function checking if the content type starts with a given string
+     * This function checks if the content type starts with a given string
      * @return true if the content type starts with a given string
      */
     public boolean checkingContentType() throws GeneralException {
         try {
-            /*if(myStr.length < 2 || myStr.length > 3)
-                throw new GeneralException("invalid command");*/
             String[] words = readFile();
             if(words.length == 0)
                 return true;
@@ -57,7 +55,6 @@ public class Word implements command {
             throw new GeneralException("error");
         }
         catch (Exception e) {
-            //System.err.println(e.getMessage());
             throw new GeneralException(e.getMessage());
         }
         return true;
@@ -76,7 +73,6 @@ public class Word implements command {
                 str.append(line).append(" ");
             words = str.toString().split(" ");
         } catch (Exception e) {
-            //System.err.println(e.getMessage());
             throw new GeneralException("error");
         }
         return words;

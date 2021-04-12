@@ -24,7 +24,7 @@ public class Type implements command {
     }
 
     /**
-     * This function checking if the words of the file appear in the contents of the url
+     * This function checks if the words of the file appear in the contents of the url
      * @return true if the field of the words of the file appear in the contents of the url
      * @throws GeneralException if there are URL problems or problems opening / reading / closing the file
      */
@@ -32,22 +32,17 @@ public class Type implements command {
 
         if(myStr.length < 3)
             return false;
+        String type;
         try {
             type = myUrl.getType();
-        }
-        catch (GeneralException e) {
-            throw new GeneralException("bad url");
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new GeneralException("error");
-        }
-        catch (Exception e) {
-            System.err.println(e.getMessage());
+        } catch (Exception e) {
+            throw new GeneralException(e.getMessage());
         }
         return type.contains(myStr[2]);
     }
 
     private final String[] myStr;
     private final Url myUrl;
-    private String type;
 }

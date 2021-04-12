@@ -39,7 +39,7 @@ public class Language implements command {
     }
 
     /**
-     * this function checking if this is the desired language
+     * this function checks if this is the desired language
      * @return true if the language is English
      * @throws GeneralException if there are URL problems or problems opening / reading / closing the file
      */
@@ -89,13 +89,9 @@ public class Language implements command {
                 }
             }
         }
-        catch (IllegalArgumentException e) {
+        catch (IllegalArgumentException | MalformedURLException e) {
             throw new GeneralException("bad url");
-        }
-        catch (MalformedURLException e) {
-            throw new GeneralException("bad url");
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new GeneralException("error");
         }
         catch (Exception e) {

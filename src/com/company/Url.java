@@ -25,7 +25,7 @@ public class Url {
         try {
             webAdr = new URL(webAddress);
         }
-        catch (MalformedURLException e) {
+        catch (IllegalArgumentException | MalformedURLException e) {
             throw new GeneralException("bad url");
         }
         URLConnection connection = webAdr.openConnection();
