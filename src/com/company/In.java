@@ -10,6 +10,10 @@ public class In {
      * This is the class constructor function
      */
     public In() {}
+
+    /**
+     * This function receives input from the user
+     */
     public void getIn() {
         Scanner input = new Scanner(System.in);
         myIn = input.nextLine().split(" ");
@@ -33,5 +37,8 @@ public class In {
             default -> throw new GeneralException("invalid command");
         };
     }
+    /**
+     * An array of input word strings
+     */
     private String[] myIn;
 }

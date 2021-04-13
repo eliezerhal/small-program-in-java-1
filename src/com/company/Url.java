@@ -32,5 +32,8 @@ public class Url {
         return connection.getContentType();
     }
 
+    /**
+     * A string of web address
+     */
     private final String webAddress;
 }

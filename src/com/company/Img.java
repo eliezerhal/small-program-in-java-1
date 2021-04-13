@@ -43,5 +43,8 @@ public class Img implements command {
         }
         return true;
     }
+    /**
+     * A string of command line strings
+     */
     private final String[] myStr;
 }

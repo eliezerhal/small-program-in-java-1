@@ -12,7 +12,7 @@ import java.net.MalformedURLException;
 public class Language implements command {
     public Language(String[] str) {
         myStr = str;
-        lettersArr = new int[26];
+        lettersArr = new int[letters];
         counter = 0;
     }
 
@@ -46,17 +46,17 @@ public class Language implements command {
     public boolean isEnglish() throws GeneralException {
         try {
             counteringLetters();
-            double[] frqArr = new double[26];
+            double[] frqArr = new double[letters];
             double[] FrqArr = {0.0748, 0.0134, 0.0411, 0.0308, 0.1282, 0.0240,
                     0.0185, 0.0414, 0.0725, 0.0014, 0.0053, 0.0403, 0.0340,
                     0.0673, 0.0785, 0.0314, 0.0010, 0.0609, 0.0614, 0.1002,
                     0.0316, 0.0108, 0.0131, 0.0044, 0.0127, 0.0011};
-            for (int i = 0; i < 26; i++)
+            for (int i = 0; i < letters; i++)
                 frqArr[i] = (double) lettersArr[i]/counter;
             double var = 0;
-            for (int i = 0; i < 26; i++)
+            for (int i = 0; i < letters; i++)
                 var += Math.pow(FrqArr[i] - frqArr[i], 2);
-            return (var < 0.004);
+            return (var < threshold);
         } catch (Exception e) {
             throw new GeneralException(e.getMessage());
         }
@@ -111,4 +111,12 @@ public class Language implements command {
      * A counter of letters in a file
      */
     private int counter;
+    /**
+     * Maximum difference between the frequency of the letters in the English language and the frequency of the letters in the text
+     */
+    private static final double threshold = 0.004;
+    /**
+     * The amount of letters in the language
+     */
+    private static final int letters = 26;
 }

@@ -43,6 +43,12 @@ public class Type implements command {
         return type.contains(myStr[2]);
     }
 
+    /**
+     * A string of command line strings
+     */
     private final String[] myStr;
+    /**
+     * An object from the URL class that handles URL-related operations
+     */
     private final Url myUrl;
 }
